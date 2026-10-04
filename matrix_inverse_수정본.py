@@ -1,6 +1,4 @@
 """
-역행렬을 구하는 프로그램
-----------------------------------------------------
 구성 조건
  1. 행렬 입력 기능          : input_matrix()
  2. 행렬식을 이용한 역행렬   : inverse_by_determinant()
@@ -11,12 +9,8 @@
  - 구한 역행렬이 올바른지 A x A^-1 = I 검증 (verify_inverse)
 """
 
-# =========================================================
-# 1. 행렬 입력 기능
-# =========================================================
-def input_matrix():
-    """사용자로부터 정수 n을 입력받아 n x n 정방행렬을
-    행 단위로 입력받고, 2차원 리스트(배열)로 반환한다."""
+
+def input_matrix():  # 리스트 생성
     while True:
         try:
             n = int(input("행렬의 크기 n을 입력하세요 (n x n): "))
@@ -46,8 +40,7 @@ def input_matrix():
     return matrix
 
 
-def print_matrix(matrix, title="", precision=4):
-    """행렬을 보기 좋게 출력한다."""
+def print_matrix(matrix, title="", precision=4):  # 행렬 출력
     if title:
         print(f"\n[{title}]")
     for row in matrix:
@@ -55,9 +48,8 @@ def print_matrix(matrix, title="", precision=4):
         print(" ".join(formatted))
 
 
-# =========================================================
-# 2. 행렬식을 이용한 역행렬 계산 기능
-# =========================================================
+# 행렬식 이용 연산
+
 def get_minor(matrix, row, col):
     """matrix에서 row행, col열을 제거한 소행렬(minor)을 반환한다."""
     return [r[:col] + r[col + 1:] for i, r in enumerate(matrix) if i != row]
@@ -125,9 +117,9 @@ def inverse_by_determinant(matrix):
     return inverse
 
 
-# =========================================================
-# 3. 가우스-조던 소거법을 이용한 역행렬 계산 기능
-# =========================================================
+
+# 가우스-조던 소거법을 이용한 역행렬 계산 
+
 def inverse_by_gauss_jordan(matrix):
     """가우스-조던 소거법을 사용하여 역행렬을 계산한다.
     [A | I] 를 [I | A^-1] 형태로 만든다.
@@ -164,9 +156,9 @@ def inverse_by_gauss_jordan(matrix):
     return inverse
 
 
-# =========================================================
-# 4. 결과 출력 및 비교 기능
-# =========================================================
+
+# 결과 출력 및 비교 기능
+
 def compare_matrices(m1, m2, tol=1e-6):
     """두 행렬이 (오차범위 내에서) 같은지 비교한다."""
     if m1 is None or m2 is None:
@@ -179,9 +171,8 @@ def compare_matrices(m1, m2, tol=1e-6):
     return True
 
 
-# =========================================================
 # 추가기능 : A x A^-1 = I 검증
-# =========================================================
+
 def multiply_matrix(a, b):
     n = len(a)
     result = [[0.0] * n for _ in range(n)]
@@ -213,9 +204,8 @@ def verify_inverse(original, inverse, label):
         print(f"-> 검증 실패: A x {label} != I 입니다.")
 
 
-# =========================================================
+
 # 메인 함수
-# =========================================================
 def main():
     print("=" * 50)
     print(" 역행렬 계산 프로그램")
