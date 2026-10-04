@@ -16,4 +16,4 @@ n×n 행렬의 역행렬을 계산하는 프로그램입니다.
 ## 실행 방법
 
 ```bash
-python3 matrix_inverse.py
+python3 matrix_inverse_수정본.py
